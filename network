@@ -18,18 +18,25 @@ public class Network {
         network.remove(user);
     }
     public void makefriends(User user1,User user2)
-    {int x;
-        if(user1!=user2)
+    {
+        /*if(user1!=user2)
         {
            
                if( user1.friends.contains(user2))
-               {System.out.println("User 1 and use 2 are  friends"); x=1;}
+               {System.out.println("User 1 and user 2 are  friends");}
                else{System.out.println("Users are not friends");
                    user1.friends.add(user2);
                    user2.friends.add(user1);}
         }
-        else{System.out.println("User 1 and User 2 are the same user");x=2;}
-      
+        else{System.out.println("User 1 and User 2 are the same user");}*/
+        if (user1==user2)
+        {System.out.println("Same user");}
+        else if(user1.friends.contains(user2))
+        {System.out.println("Users are already friends");}
+        else
+        {user1.friends.add(user2);
+         user2.friends.add(user1);
+        System.out.println("Success");}
     }
     public void printfriends(User user)
     {
