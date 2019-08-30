@@ -1,59 +1,77 @@
-import java.util.*; 
+import java.util.*;
 public class Menu extends Network {
-    public User start()
-    {
-        User usernull=null;
+    
+	public User start(){ 
+	User usernull=null;
     System.out.println("Welcome! Please enter your username:");
     Scanner sc = new Scanner(System.in);
     String i = sc.nextLine();
-    if(network.containsKey(i))
+    //Set<User> mySet = network.get("i");
+    for(int j=0; j<network.size();j++) {
+    if (network.containsValue(i))
     {
-        System.out.println("Success");
-        return network.get(i);
+    	return network.get(j);
     }
-    else
-    { System.out.println("This user does not exist");
-    return usernull;}
-}
-    /*for(int j=0; j<network.size(); j++)
-    {
-    if(network.containsValue(i))
-    {
-        return network.get(j);
-    }
-    }
+    
+	}
     return usernull;
-    }*/
-    public void seeyourwall()
+	}
+	/*public User start()
+	{
+	    System.out.println("Welcome! Please enter your username:");
+    Scanner sc = new Scanner(System.in);
+    String i = sc.nextLine();
+    return network.get(i);
+}*/
+User myuser=start();
+    public void seeyourwall(User myuser) 
+    {   
+        String Y="yes";
+        String N="no";
+    	
+    	System.out.println("Do you want to see your wall?");
+    	Scanner sc = new Scanner(System.in);
+    	String k = sc.nextLine();
+    	switch(k)
+    	{
+    	    case "yes":
+    	    System.out.println("YOUR WALL");
+    	System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
+        break;
+        case"no":
+        
+            System.out.println(" ");
+        default:
+        System.out.println("wrong!");
+    }
+}
+    public void seeFriendsWall(User myuser)
     {
-        User myuser=start();
-        myuser.wall.postlist.toString();
+    
+    String Y="yes";
+    String N="no";    
+    System.out.println("Do you want to see a friend's wall?");
+    Scanner sc = new Scanner(System.in);
+    String i = sc.nextLine();
+    switch(i)
+    {
+        case "yes":
+    System.out.println("Choose to see a friends wall");
+    
+    System.out.println(myuser.getFriend());
+   
+    System.out.println("Press the number of the friend you want to see his wall");
+    Scanner sca = new Scanner(System.in);
+    int j = sca.nextInt();
+    System.out.println("YOUR FRIEND'S WALL");
+    System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
+    break;
+    case "no":
+            System.out.println(" ");
+    default:
+    System.out.println("wrong!");
     
     }
-      public void seeFriendsWall(User user1)
-{
-
-System.out.println("Διάλεξε να δεις το Wall ενος φίλου σου");
-//user1.getList();
-System.out.println(user1.getList());
-for(int i=0; i<user1.friends.size(); i++)
-{
-System.out.println(user1.friends.get(i).toString());
-}
-System.out.println("Για το 1ο φίλο σου πληκτρολόγησε τον αριθμό 1 για τον 2ο το 2 κ.ο.κ");
-Scanner sc = new Scanner(System.in);
-int j = sc.nextInt();
-
-switch(j)
-{
-case(0):{}
-break;
-case(1):{user1.friends.get(0).printWall();}
-break;
-case(2):{user1.friends.get(1).printWall();}
-break;
 }
     
-
-}
 }
