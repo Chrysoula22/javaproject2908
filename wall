@@ -1,20 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 public class Wall {
     ArrayList<Message> postlist= new ArrayList<Message>();
-    public ArrayList<Message> getList()
-    {
-    return postlist;
-    }
-    public void printposts()
-   {
-           System.out.println("posts: "+postlist);
-	   /*String results=" ";
-	   for(int i=0; i<postlist.size();i++)
-	   	{
-	   		results +=postlist.get(i).toString()+" ";
-	   	}
-	   return "Posts "+results;*/
-}
+    ArrayList<ReplyMessage> postlistreply= new ArrayList<ReplyMessage>();
+    
     public int share(User user1,User user2)//elegxos gia to an einai filoi
     {
        if(user1==user2)
@@ -28,8 +17,15 @@ public class Wall {
        
        //return 3;
     }
-    /*public String toString()
+    
+    
+    public String getpostlist()
     {
-        return "List of posts"+postlist;
-    }*/
-}
+	   return Arrays.toString(postlist.toArray());
+    }
+    public String getreplies()
+    {
+	   return Arrays.toString(postlistreply.toArray());
+    }
+    
+   }
