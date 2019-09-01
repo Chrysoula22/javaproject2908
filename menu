@@ -1,42 +1,135 @@
 import java.util.*;
 public class Menu extends Network {
-    
-	public User start(){ 
-	User usernull=null;
+   
+  public User start(){ 
+    User usernull=null;
     System.out.println("Welcome! Please enter your username:");
     Scanner sc = new Scanner(System.in);
     String i = sc.nextLine();
     //Set<User> mySet = network.get("i");
-    for(int j=0; j<network.size();j++) {
-    if (network.containsValue(i))
+    for(int j=0; j<users.size();j++) {
+    if (users.get(j).username==i)
     {
-    	return network.get(j);
+        return users.get(j);
     }
     
-	}
+    }
     return usernull;
-	}
-	/*public User start()
-	{
-	    System.out.println("Welcome! Please enter your username:");
+    }
+    /*public User start()
+    {
+        System.out.println("Welcome! Please enter your username:");
     Scanner sc = new Scanner(System.in);
     String i = sc.nextLine();
     return network.get(i);
 }*/
-User myuser=start();
-    public void seeyourwall(User myuser) 
+    User myuser=start();
+    public void continueToMenu(User myuser )
+    {
+        System.out.println("If you want to see your wall, press 1");
+        System.out.println("If you want to see a friend's wall press 2");
+        System.out.println("If you want to send friend request, press 3");
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+        switch(k)
+        {
+            case 1:
+            System.out.println("YOUR WALL:");
+            System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
+        break;
+            case 2:
+            System.out.println("Your friends list: "+ myuser.getFriend());
+            System.out.println("Which friend's wall you want to see?");
+            Scanner scc = new Scanner(System.in);
+            String u = scc.nextLine();
+            for(int j=0; j<myuser.friends.size();j++) 
+            {
+               if (myuser.friends.get(j).username.equals(u))
+                {
+                    myuser=myuser.friends.get(j);
+                    System.out.println("YOUR FRIEND'S WALL:");
+                    System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
+                }
+            }
+           System.out.println("If you want to post a message, press a");
+           System.out.println("If you want to reply to a message, press b");
+           System.out.println("If you want to like a message, press c");
+           
+           Scanner sca = new Scanner(System.in);
+           String l = sca.nextLine();
+           switch(l)
+           {
+               case "a":
+               System.out.println("Please enter a text ");
+               Scanner scaa = new Scanner(System.in);
+               String t = scaa.nextLine();
+               Message text=new Message(t);
+               myuser.wall.postlist.add(text);
+               System.out.println("OKAY"+myuser.wall.getpostlist());
+               break;
+               
+               case "b":
+               System.out.println("FRIEND'S WALL:"+myuser.wall.getpostlist());
+               System.out.println("Enter the number of the message to reply");
+               Scanner in = new Scanner(System.in);
+               int n = in.nextInt();
+               
+               System.out.println("You chose the following message: " +myuser.wall.postlist.get(n-1).text);
+               System.out.println("Enter a reply");
+               Scanner sccc=new Scanner(System.in);
+               String te=sccc.nextLine();
+               ReplyMessage reply=new ReplyMessage(te);
+               myuser.wall.replies.add(reply);
+               System.out.println("OKAY"+myuser.wall.getreplies());
+               break;
+               
+               case "c":
+               System.out.println("All messages:" +myuser.wall.getpostlist());
+               System.out.println("Enter the number of the message to like");
+               Scanner inn = new Scanner(System.in);
+               int ni = inn.nextInt();
+               System.out.println("You chose the following message: " +myuser.wall.postlist.get(ni-1).text);
+               myuser.wall.postlist.get(ni-1).setLikes(1);
+               System.out.println(myuser.wall.postlist.get(ni-1).toString());
+               break;
+        }
+        break;
+        case 3:
+        System.out.println(k);
+        for(int i=0; i<users.size(); i++)
+        {
+            System.out.println("ka");
+            System.out.println(users.get(i).username);
+        }
+        for(int i=0; i<users.size(); i++)
+        {
+            if(!myuser.friends.equals(users.get(i)))
+           {
+            System.out.println("CHOOSE A USER TO SEND FRIEND REQUEST: ");
+            System.out.println((i+1) + " " + users.get(i));
+           }
+            else
+            {
+             System.out.println("NOT WORKING");
+            }
+        }
+    }
+    
+        
+    
+    /*public void seeyourwall(User myuser) 
     {   
         String Y="yes";
         String N="no";
-    	
-    	System.out.println("Do you want to see your wall?");
-    	Scanner sc = new Scanner(System.in);
-    	String k = sc.nextLine();
-    	switch(k)
-    	{
-    	    case "yes":
-    	    System.out.println("YOUR WALL");
-    	System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
+        
+        System.out.println("Do you want to see your wall?");
+        Scanner sc = new Scanner(System.in);
+        String k = sc.nextLine();
+        switch(k)
+        {
+            case "yes":
+            System.out.println("YOUR WALL");
+        System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
         break;
         case"no":
         
@@ -63,6 +156,8 @@ User myuser=start();
     System.out.println("Press the number of the friend you want to see his wall");
     Scanner sca = new Scanner(System.in);
     int j = sca.nextInt();
+    
+
     System.out.println("YOUR FRIEND'S WALL");
     System.out.println("Posts: "+ myuser.wall.getpostlist()+"Replies :"+myuser.wall.getreplies());
     break;
@@ -72,6 +167,9 @@ User myuser=start();
     System.out.println("wrong!");
     
     }
-}
+}*/
     
+
 }
+}
+
