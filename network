@@ -1,21 +1,20 @@
 import java.util.*;
 import java.lang.Exception;
 public class Network {
-    Map<ArrayList,User> network=new HashMap<ArrayList,User>();
+    Map<ArrayList, User > network=new HashMap<ArrayList,User>();
+    ArrayList<User> users=new ArrayList<User>();
     //ArrayList<FriendRequest> list=new ArrayList<FriendRequest>();
     public void adduser(User user)
     {
-        try{
-        network.put(user.frequests, user);
-       }
-       catch(NullPointerException e)
-       {
-           System.out.println("User is not added");
-        }
+        
+        network.put(user.friends, user);
+        users.add(user);
+       
     }
     public void remove(User user)
     {
         network.remove(user);
+        users.remove(user);
     }
     public void makefriends(User user1,User user2)
     {
